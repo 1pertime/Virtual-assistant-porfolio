@@ -2,12 +2,13 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>John Mark Saberdo Dava — VA Portfolio</title>
-    <meta name="description" content="Portfolio of John Mark Saberdo Dava — Virtual Assistant (administrative support, social media, content, data entry)." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>John Mark Saberdo Dava — Reliable Virtual Assistant</title>
+    <meta name="description" content="Portfolio of John Mark Saberdo Dava — Dedicated Virtual Assistant offering administrative support, data management, and customer service to boost your efficiency." />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Custom Tailwind Configuration remains self-contained for deployment
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -33,26 +34,31 @@
             }
         }
     </script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://i.pravatar.cc">
+
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
+    <script src="https://unpkg.com/feather-icons@4.29.1/dist/feather.min.js" defer></script>
 
     <style>
         /* Base page colors for smooth transition */
         html {
-            background-color: var(--tw-background-light, #f9fafb); /* Light Mode Background */
-            color: #1f2937; /* Default text color */
+            background-color: var(--tw-background-light, #f9fafb);
+            color: #1f2937;
             transition: background-color 0.3s, color 0.3s;
         }
 
         /* Dark mode overrides */
         html.dark {
-            background-color: var(--tw-background-dark, #111827); /* Dark Mode Background */
-            color: #e5e7eb; /* Dark Mode Text Color */
+            background-color: var(--tw-background-dark, #111827);
+            color: #e5e7eb;
         }
 
-        /* Sticky Header with Backdrop Filter (only requires minimal custom CSS) */
+        /* Sticky Header with Backdrop Filter (required minimal custom CSS) */
         header {
-            background-color: rgba(255 255 255 / 0.85); /* Slightly transparent white */
+            background-color: rgba(255 255 255 / 0.85);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
@@ -66,7 +72,7 @@
             padding: 0 1.5rem;
         }
         html.dark header {
-            background-color: rgba(31 41 55 / 0.9); /* gray-800 with transparency */
+            background-color: rgba(31 41 55 / 0.9);
             box-shadow: 0 4px 6px rgb(0 0 0 / 0.2);
         }
 
@@ -113,7 +119,7 @@
                 </div>
             </div>
             <div class="flex flex-col items-center text-center">
-                <img src="https://i.pravatar.cc/300" alt="John Mark Saberdo Dava" class="avatar w-48 h-48 md:w-60 md:h-60 rounded-full object-cover ring-4 ring-accent-500 dark:ring-accent-light shadow-2xl transition duration-500 hover:shadow-3xl hover:scale-[1.03]" />
+                <img src="https://i.pravatar.cc/300?img=1" alt="Professional portrait of Virtual Assistant John Mark Saberdo Dava" class="avatar w-48 h-48 md:w-60 md:h-60 rounded-full object-cover ring-4 ring-accent-500 dark:ring-accent-light shadow-2xl transition duration-500 hover:shadow-3xl hover:scale-[1.03]" loading="lazy" />
                 <h3 class="mt-4 text-xl font-bold text-blue-700 dark:text-blue-400">John Mark Saberdo Dava</h3>
                 <p class="text-md text-gray-500 dark:text-gray-400">Virtual Assistant</p>
             </div>
@@ -180,58 +186,63 @@
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Scroll animations (ScrollReveal)
-        ScrollReveal().reveal('section', {
-            distance: '50px',
-            duration: 800,
-            easing: 'ease',
-            origin: 'bottom',
-            interval: 100,
-        });
+        // 5. Moved Feather and ScrollReveal logic toDOMContentLoaded for safety
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Initialize ScrollReveal
+            ScrollReveal().reveal('section', {
+                distance: '50px',
+                duration: 800,
+                easing: 'ease',
+                origin: 'bottom',
+                interval: 100,
+            });
 
-        const darkToggle = document.getElementById('dark-toggle');
-        const htmlElement = document.documentElement;
+            const darkToggle = document.getElementById('dark-toggle');
+            const htmlElement = document.documentElement;
 
-        // Update icon function (moon or sun)
-        function updateIcon(iconName) {
-            darkToggle.innerHTML = '';
-            const icon = document.createElement('i');
-            icon.setAttribute('data-feather', iconName);
-            icon.classList.add('w-5', 'h-5');
-            // Enhanced icon color logic
-            if (iconName === 'sun') {
-                icon.style.color = '#fcd34d'; // yellow-400
-            } else {
-                icon.style.color = '#374151'; // gray-700
+            // Update icon function (moon or sun)
+            function updateIcon(iconName) {
+                darkToggle.innerHTML = '';
+                const icon = document.createElement('i');
+                icon.setAttribute('data-feather', iconName);
+                icon.classList.add('w-5', 'h-5');
+                // Enhanced icon color logic
+                if (iconName === 'sun') {
+                    icon.style.color = '#fcd34d'; // yellow-400
+                } else {
+                    icon.style.color = '#374151'; // gray-700
+                }
+                darkToggle.appendChild(icon);
+                feather.replace();
             }
-            darkToggle.appendChild(icon);
-            feather.replace();
-        }
 
-        // Initialize theme and icon based on saved preference or system
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                htmlElement.classList.add('dark');
-                updateIcon('sun'); // Show sun icon (to switch back to light)
-            } else {
-                htmlElement.classList.remove('dark');
-                updateIcon('moon'); // Show moon icon (to switch to dark)
+            // Initialize theme and icon based on saved preference or system
+            function initTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    htmlElement.classList.add('dark');
+                    updateIcon('sun'); // Show sun icon (to switch back to light)
+                } else {
+                    htmlElement.classList.remove('dark');
+                    updateIcon('moon'); // Show moon icon (to switch to dark)
+                }
             }
-        }
 
-        initTheme();
+            initTheme();
 
-        // Toggle dark mode on button click
-        darkToggle.addEventListener('click', () => {
-            if (htmlElement.classList.contains('dark')) {
-                htmlElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                updateIcon('moon');
-            } else {
-                htmlElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                updateIcon('sun');
-            }
+            // Toggle dark mode on button click
+            darkToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    updateIcon('moon');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    updateIcon('sun');
+                }
+            });
         });
     </script>
 </body>
