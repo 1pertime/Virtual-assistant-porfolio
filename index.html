@@ -8,7 +8,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Custom Tailwind Configuration remains self-contained for deployment
+        // CRITICAL FIX: The entire config block is now defined here.
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -56,7 +56,7 @@
             color: #e5e7eb;
         }
 
-        /* Sticky Header with Backdrop Filter (required minimal custom CSS) */
+        /* Sticky Header with Backdrop Filter */
         header {
             background-color: rgba(255 255 255 / 0.85);
             backdrop-filter: blur(12px);
@@ -185,8 +185,7 @@
         // Auto year for footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Scroll animations (ScrollReveal)
-        // 5. Moved Feather and ScrollReveal logic toDOMContentLoaded for safety
+        // 5. Moved Feather and ScrollReveal logic to DOMContentLoaded for safety
         document.addEventListener('DOMContentLoaded', () => {
             
             // Initialize ScrollReveal
